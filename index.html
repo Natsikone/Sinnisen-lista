@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Onko Naapurisi Natsi?</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,19 +13,28 @@
       background: #f4f4f4;
       color: #333;
     }
+
     h1 {
       color: #c00;
       margin-bottom: 10px;
     }
+
+    .input-area {
+      max-width: 400px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
     input {
       padding: 14px;
       font-size: 18px;
-      width: 320px;
+      width: 100%;
       border: 2px solid #ccc;
       border-radius: 8px;
       display: block;
       margin: 10px 0;
     }
+
     button {
       padding: 14px 32px;
       font-size: 18px;
@@ -33,36 +43,56 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      margin: 10px;
+      margin: 10px auto;
+      display: block;
     }
+
     button:hover {
       background: #a00;
     }
+
     #result {
       margin-top: 40px;
       font-size: 28px;
       font-weight: bold;
       min-height: 50px;
     }
+
     .footer {
       margin-top: 70px;
       font-size: 16px;
       color: #555;
       line-height: 1.6;
     }
+
     .footer a {
       color: #c00;
       text-decoration: none;
     }
+
     .footer a:hover {
       text-decoration: underline;
-      .input-area {
-    max-width: 400px;
-    margin: 30px auto;
-    padding: 0 20px;
-  }
     }
   </style>
+</head>
+
+<body>
+
+  <h1>Onko Naapurisi Natsi?</h1>
+
+  <div class="input-area">
+    <input type="text" placeholder="Kirjoita nimi...">
+    <button>Testaa</button>
+  </div>
+
+  <div id="result"></div>
+
+  <div class="footer">
+    <p>Tämä on huumorisivusto eikä perustu todellisuuteen.</p>
+  </div>
+
+</body>
+</html>
 </head>
 <body>
   <h1>Onko Naapurisi Natsi?</h1>
