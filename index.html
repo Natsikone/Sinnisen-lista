@@ -1,1 +1,42 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <title>Nimilista tarkistus</title>
+</head>
+<body>
 
+  <h2>Onko naapurisi natsi?</h2>
+
+  <input type="text" id="nameInput" placeholder="Kirjoita nimi">
+  <button onclick="checkName()">Tarkista</button>
+
+  <p id="result"></p>
+
+  <script>
+    const blockedName = "ville manninen";
+
+    function checkName() {
+      const input = document.getElementById("nameInput").value
+        .trim()
+        .toLowerCase();
+
+      // 🔴 TYHJÄ KENTTÄ
+      if (input === "") {
+        document.getElementById("result").innerText = "⚠ Kirjoita nimi ensin!";
+        return;
+      }
+
+      // 🔴 ESTETTY NIMI
+      if (input === blockedName) {
+        document.getElementById("result").innerText = "✖ Ei löydy Natsi listalta";
+      } 
+      // 🟢 KAIKKI MUUT
+      else {
+        document.getElementById("result").innerText = "✔ Löytyy Natsi listalta";
+      }
+    }
+  </script>
+
+</body>
+</html>
