@@ -88,9 +88,9 @@
   <div id="result"></div>
 
   <div class="footer">
-    <p>Poistopyynnöt käsitellään tapauskohtaisesti ja henkilön mahdollinen kuuluminen listalle arvioidaan ennen päätöstä.<br><br>
-      Ota yhteyttä:
-     <br><br>
+    <p>
+      Poistopyynnöt käsitellään tapauskohtaisesti ja henkilön mahdollinen kuuluminen listalle arvioidaan ennen päätöstä.<br><br>
+      Ota yhteyttä:<br><br>
       <strong><a href="mailto:natsikone@gmail.com">natsikone@gmail.com</a></strong>
     </p>
   </div>
@@ -114,6 +114,14 @@
       const result = document.getElementById("result");
 
       let name = inputField.value.trim().toLowerCase();
+
+      let parts = name.split(" ");
+
+      if (parts.length < 2) {
+        result.style.color = "#f80";
+        result.textContent = "Kirjoita etu- ja sukunimi";
+        return;
+      }
 
       if (name === "") {
         result.style.color = "#f80";
