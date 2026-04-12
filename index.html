@@ -2,40 +2,85 @@
 <html lang="fi">
 <head>
   <meta charset="UTF-8">
-  <title>Nimilista tarkistus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onko naapurisi natsi?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+      background: #f4f4f4;
+    }
+    h2 { color: #c00; }
+    input {
+      padding: 12px;
+      font-size: 18px;
+      width: 300px;
+      border: 2px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      background: #c00;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover { background: #a00; }
+    #result {
+      margin-top: 30px;
+      font-size: 24px;
+      font-weight: bold;
+      min-height: 40px;
+    }
+  </style>
 </head>
 <body>
 
   <h2>Onko naapurisi natsi?</h2>
-
-  <input type="text" id="nameInput" placeholder="Kirjoita nimi">
-  <button onclick="checkName()">Tarkista</button>
+  
+  <input type="text" id="nameInput" placeholder="Kirjoita nimi..." autocomplete="off">
+  <br><br>
+  <button onclick="checkName()">🔍 Tarkista</button>
 
   <p id="result"></p>
 
   <script>
-    const blockedName = "ville manninen";
+    const blockedNames = [
+      "ville manninen",
+      "ville manninen ",
+      "vile manninen"   // kirjoitusvirheitä varten
+    ];
 
     function checkName() {
-      const input = document.getElementById("nameInput").value
-        .trim()
-        .toLowerCase();
+      const inputField = document.getElementById("nameInput");
+      const result = document.getElementById("result");
+      
+      let name = inputField.value.trim().toLowerCase();
 
-      // 🔴 TYHJÄ KENTTÄ
-      if (input === "") {
-        document.getElementById("result").innerText = "⚠ Kirjoita nimi ensin!";
+      // Tyhjä syöte
+      if (name === "") {
+        result.style.color = "#f80";
+        result.innerHTML = "⚠ Kirjoita joku nimi ensin!";
         return;
       }
 
-      // 🔴 ESTETTY NIMI
-      if (input === blockedName) {
-        document.getElementById("result").innerText = "✖ Ei löydy Natsi listalta";
-      } 
-      // 🟢 KAIKKI MUUT
-      else {
-        document.getElementById("result").innerText = "✔ Löytyy Natsi listalta";
+      // Tarkistus
+      if (blockedNames.includes(name)) {
+        result.style.color = "#0a0";
+        result.innerHTML = "✖ Ei löydy Natsi-listalta";
+      } else {
+        result.style.color = "#c00";
+        result.innerHTML = "✔ Löytyy Natsi-listalta";
       }
     }
+
+    // Bonus: Enter-näppäin toimii
+    document.getElementById("nameInput").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") checkName();
+    });
   </script>
 
 </body>
