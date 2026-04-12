@@ -8,50 +8,80 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      margin: 50px;
+      margin: 60px;
       background: #f4f4f4;
+      color: #333;
     }
-    h2 { color: #c00; }
+    h1 {
+      color: #c00;
+      margin-bottom: 10px;
+    }
     input {
-      padding: 12px;
+      padding: 14px;
       font-size: 18px;
-      width: 300px;
+      width: 320px;
       border: 2px solid #ccc;
-      border-radius: 6px;
+      border-radius: 8px;
+      margin: 10px 0;
     }
     button {
-      padding: 12px 24px;
+      padding: 14px 32px;
       font-size: 18px;
       background: #c00;
       color: white;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
+      margin: 10px;
     }
-    button:hover { background: #a00; }
+    button:hover {
+      background: #a00;
+    }
     #result {
-      margin-top: 30px;
-      font-size: 24px;
+      margin-top: 40px;
+      font-size: 28px;
       font-weight: bold;
-      min-height: 40px;
+      min-height: 50px;
+    }
+    .footer {
+      margin-top: 60px;
+      font-size: 15px;
+      color: #555;
+      line-height: 1.5;
+    }
+    .footer a {
+      color: #c00;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
+  <h1>Onko naapurisi natsi?</h1>
+  <p>Kirjoita nimi alle ja tarkista</p>
 
-  <h2>Onko naapurisi natsi?</h2>
-  
-  <input type="text" id="nameInput" placeholder="Kirjoita nimi..." autocomplete="off">
-  <br><br>
+  <input type="text" id="nameInput" placeholder="esim. Ville Manninen" autocomplete="off">
+  <br>
   <button onclick="checkName()">🔍 Tarkista</button>
 
   <p id="result"></p>
+
+  <div class="footer">
+    <p>
+      Jos haluat pois listalta, ota yhteyttä, niin tarkistamme uudestaan listamme.<br>
+      <strong><a href="mailto:natsikone@gmail.com">natsikone@gmail.com</a></strong>
+    </p>
+  </div>
 
   <script>
     const blockedNames = [
       "ville manninen",
       "ville manninen ",
-      "vile manninen"   // kirjoitusvirheitä varten
+      "vile manninen",
+      "vilie manninen",
+      "villemaninen"
     ];
 
     function checkName() {
@@ -60,14 +90,12 @@
       
       let name = inputField.value.trim().toLowerCase();
 
-      // Tyhjä syöte
       if (name === "") {
         result.style.color = "#f80";
         result.innerHTML = "⚠ Kirjoita joku nimi ensin!";
         return;
       }
 
-      // Tarkistus
       if (blockedNames.includes(name)) {
         result.style.color = "#0a0";
         result.innerHTML = "✖ Ei löydy Natsi-listalta";
@@ -77,11 +105,9 @@
       }
     }
 
-    // Bonus: Enter-näppäin toimii
     document.getElementById("nameInput").addEventListener("keypress", function(e) {
       if (e.key === "Enter") checkName();
     });
   </script>
-
 </body>
 </html>
