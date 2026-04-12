@@ -81,35 +81,15 @@
   <h1>Onko Naapurisi Natsi?</h1>
 
   <div class="input-area">
-    <input type="text" placeholder="Kirjoita nimi...">
-    <button>Testaa</button>
+    <input type="text" id="nameInput" placeholder="etunimi sukunimi" autocomplete="off">
+    <button onclick="checkName()">🔍 Tarkista</button>
   </div>
 
   <div id="result"></div>
 
   <div class="footer">
-    <p>Tämä on huumorisivusto eikä perustu todellisuuteen.</p>
-  </div>
-
-</body>
-</html>
-</head>
-<body>
-  <h1>Onko Naapurisi Natsi?</h1>
-  <p>Kirjoita nimi alle ja tarkista</p>
-
-<div class="input-area">
-    <input type="text" id="nameInput" placeholder="etunimi sukunimi" autocomplete="off">
-    <button onclick="checkName()">🔍 Tarkista</button>
-  </div>
-
-  <p id="result"></p>
-
-  <!-- Yhteysteksti -->
-  <div class="footer">
     <p>
-      Listalta poistopyynnöt käsitellään tapauskohtaisesti.  
-Ota yhteyttä: <br><br>
+      Ota yhteyttä: <br><br>
       <strong><a href="mailto:natsikone@gmail.com">natsikone@gmail.com</a></strong>
     </p>
   </div>
@@ -117,37 +97,35 @@ Ota yhteyttä: <br><br>
   <script>
     const blockedNames = [
       "ville manninen",
-      "ville manninen ",
       "vile manninen",
       "vilie manninen",
       "villemaninen",
       "jouni jarvinen",
-    "jouni järvinen",
+      "jouni järvinen",
       "aki tolmunen",
       "aki solmunen",
       "mikko leskinen",
-      "miko leskinen",
-    
+      "miko leskinen"
     ];
 
     function checkName() {
       const inputField = document.getElementById("nameInput");
       const result = document.getElementById("result");
-      
+
       let name = inputField.value.trim().toLowerCase();
 
       if (name === "") {
         result.style.color = "#f80";
-        result.innerHTML = "⚠ Kirjoita joku nimi ensin!";
+        result.textContent = "Kirjoita nimi ensin";
         return;
       }
 
       if (blockedNames.includes(name)) {
         result.style.color = "#0a0";
-        result.innerHTML = "✖ Ei löydy Natsi-listalta";
+        result.textContent = "Ei löydy listalta";
       } else {
         result.style.color = "#c00";
-        result.innerHTML = "✔ Löytyy Natsi-listalta";
+        result.textContent = "Löytyy listalta";
       }
     }
 
@@ -155,5 +133,6 @@ Ota yhteyttä: <br><br>
       if (e.key === "Enter") checkName();
     });
   </script>
+
 </body>
 </html>
