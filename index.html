@@ -130,7 +130,6 @@
 
     function animateResult() {
       const result = document.getElementById("result");
-
       result.classList.remove("animate");
       void result.offsetWidth;
       result.classList.add("animate");
@@ -158,13 +157,13 @@
         return;
       }
 
-      // 🔁 KORJATTU LOGIIKKA (sinun määritelmä)
+      // 🔁 SINUN HALUAMA LOGIIKKA
       if (blockedNames.includes(name)) {
         result.style.color = "#0a0";
-        result.textContent = "❌ Ei löydy Natsi-listalta";
+        result.innerHTML = '<span style="color:#0a0;">✖</span> Ei löydy Natsi-listalta';
       } else {
         result.style.color = "#c00";
-        result.textContent = "✔ Löytyy Natsi-listalta";
+        result.innerHTML = '<span style="color:#c00;">✔</span> Löytyy Natsi-listalta';
       }
 
       animateResult();
