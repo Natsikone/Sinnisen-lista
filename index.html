@@ -160,7 +160,8 @@
 
       // 🔁 KORJATTU LOGIIKKA (sinun määritelmä)
       if (blockedNames.includes(name)) {
-     result.innerHTML = '<span style="color:#0a0;">✖</span> Ei löydy Natsi-listalta';
+    result.style.color = "#0a0";
+result.innerHTML = '✖ Ei löydy Natsi-listalta';
       } else {
         result.style.color = "#c00";
         result.textContent = "✔ Löytyy Natsi-listalta";
