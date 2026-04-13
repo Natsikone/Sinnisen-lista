@@ -114,7 +114,7 @@
     </p>
   </div>
 
- <script>
+  <script>
     const blockedNames = [
       "ville manninen",
       "vile manninen",
@@ -130,6 +130,7 @@
 
     function animateResult() {
       const result = document.getElementById("result");
+
       result.classList.remove("animate");
       void result.offsetWidth;
       result.classList.add("animate");
@@ -138,8 +139,17 @@
     function checkName() {
       const inputField = document.getElementById("nameInput");
       const result = document.getElementById("result");
-      
+
       let name = inputField.value.trim().toLowerCase();
+
+      let parts = name.split(" ");
+
+      if (parts.length < 2) {
+        result.style.color = "#f80";
+        result.textContent = "Kirjoita etu- ja sukunimi";
+        animateResult();
+        return;
+      }
 
       if (name === "") {
         result.style.color = "#f80";
@@ -148,32 +158,22 @@
         return;
       }
 
-      let parts = name.split(/\s+/);
-      if (parts.length < 2) {
-        result.style.color = "#f80";
-        result.textContent = "Kirjoita etu- ja sukunimi";
-        animateResult();
-        return;
-      }
-
-      // 🔥 UUSI LOGIIKKA (toisinpäin)
-      const onListalla = blockedNames.includes(name);
-
-      if (onListalla) {
-          // ON LISTALLA → EI OLE NATSI → Vihreä ✅
-          result.innerHTML = `<span style="color: #0a0; font-size: 1.5em;">✅</span> Ei ole Natsi`;
-          result.style.color = "#0a0";
+      // 🔁 KORJATTU LOGIIKKA (sinun määritelmä)
+      if (blockedNames.includes(name)) {
+        result.style.color = "#0a0";
+        result.textContent = "❌ Ei löydy Natsi-listalta";
       } else {
-          // EI OLE LISTALLA → ON NATSI → Punainen ❌
-          result.innerHTML = `<span style="color: #c00; font-size: 1.5em;">❌</span> On Natsi`;
-          result.style.color = "#c00";
+        result.style.color = "#c00";
+        result.textContent = "✔ Löytyy Natsi-listalta";
       }
 
       animateResult();
     }
 
-    // Enter-näppäin
     document.getElementById("nameInput").addEventListener("keypress", function(e) {
       if (e.key === "Enter") checkName();
     });
-</script>
+  </script>
+
+</body>
+</html>
