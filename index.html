@@ -159,7 +159,9 @@
       }
 
       // 🔁 KORJATTU LOGIIKKA (sinun määritelmä)
-      if (onListalla) {
+const onListalla = blockedNames.includes(name);
+
+if (onListalla) {
     result.innerHTML = `<span style="color: #c00; font-size: 1.4em;">✔</span> Löytyy Natsi-listalta`;
     result.style.color = "#c00";
 } else {
