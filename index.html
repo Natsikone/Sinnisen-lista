@@ -114,7 +114,7 @@
     </p>
   </div>
 
-  <script>
+ <script>
     const blockedNames = [
       "ville manninen",
       "vile manninen",
@@ -130,7 +130,6 @@
 
     function animateResult() {
       const result = document.getElementById("result");
-
       result.classList.remove("animate");
       void result.offsetWidth;
       result.classList.add("animate");
@@ -139,17 +138,8 @@
     function checkName() {
       const inputField = document.getElementById("nameInput");
       const result = document.getElementById("result");
-
+      
       let name = inputField.value.trim().toLowerCase();
-
-      let parts = name.split(" ");
-
-      if (parts.length < 2) {
-        result.style.color = "#f80";
-        result.textContent = "Kirjoita etu- ja sukunimi";
-        animateResult();
-        return;
-      }
 
       if (name === "") {
         result.style.color = "#f80";
@@ -158,24 +148,32 @@
         return;
       }
 
-      // 🔁 KORJATTU LOGIIKKA (sinun määritelmä)
-const onListalla = blockedNames.includes(name);
+      let parts = name.split(/\s+/); // parempi split
+      if (parts.length < 2) {
+        result.style.color = "#f80";
+        result.textContent = "Kirjoita etu- ja sukunimi";
+        animateResult();
+        return;
+      }
 
-if (onListalla) {
-    result.innerHTML = `<span style="color: #c00; font-size: 1.4em;">✔</span> Löytyy Natsi-listalta`;
-    result.style.color = "#c00";
-} else {
-    result.innerHTML = `<span style="color: #0a0; font-size: 1.4em;">❌</span> Ei löydy Natsi-listalta`;
-    result.style.color = "#0a0";
-}
+      // 🔴 Sinun haluama logiikka:
+      const onListalla = blockedNames.includes(name);
+
+      if (onListalla) {
+          // ON LISTALLA → Punainen ✔
+          result.innerHTML = `<span style="color: #c00; font-size: 1.5em;">✔</span> Löytyy Natsi-listalta`;
+          result.style.color = "#c00";
+      } else {
+          // EI OLE LISTALLA → Vihreä ❌
+          result.innerHTML = `<span style="color: #0a0; font-size: 1.5em;">❌</span> Ei löydy Natsi-listalta`;
+          result.style.color = "#0a0";
+      }
 
       animateResult();
     }
 
+    // Enter-näppäin
     document.getElementById("nameInput").addEventListener("keypress", function(e) {
       if (e.key === "Enter") checkName();
     });
-  </script>
-
-</body>
-</html>
+</script>
