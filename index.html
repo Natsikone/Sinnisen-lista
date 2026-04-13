@@ -148,7 +148,7 @@
         return;
       }
 
-      let parts = name.split(/\s+/); // parempi split
+      let parts = name.split(/\s+/);
       if (parts.length < 2) {
         result.style.color = "#f80";
         result.textContent = "Kirjoita etu- ja sukunimi";
@@ -156,17 +156,17 @@
         return;
       }
 
-      // 🔴 Sinun haluama logiikka:
+      // 🔥 UUSI LOGIIKKA (toisinpäin)
       const onListalla = blockedNames.includes(name);
 
       if (onListalla) {
-          // ON LISTALLA → Punainen ✔
-          result.innerHTML = `<span style="color: #c00; font-size: 1.5em;">✔</span> Löytyy Natsi-listalta`;
-          result.style.color = "#c00";
-      } else {
-          // EI OLE LISTALLA → Vihreä ❌
-          result.innerHTML = `<span style="color: #0a0; font-size: 1.5em;">❌</span> Ei löydy Natsi-listalta`;
+          // ON LISTALLA → EI OLE NATSI → Vihreä ✅
+          result.innerHTML = `<span style="color: #0a0; font-size: 1.5em;">✅</span> Ei ole Natsi`;
           result.style.color = "#0a0";
+      } else {
+          // EI OLE LISTALLA → ON NATSI → Punainen ❌
+          result.innerHTML = `<span style="color: #c00; font-size: 1.5em;">❌</span> On Natsi`;
+          result.style.color = "#c00";
       }
 
       animateResult();
